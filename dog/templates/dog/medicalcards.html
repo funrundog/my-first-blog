@@ -1,0 +1,25 @@
+{% extends './base.html' %}
+{% load widget_tweaks %}
+{% block title %}Medical Cards{% endblock %}
+
+
+{% block content %}
+
+{% for card in cards %}
+   <a href="{% url 'card_detail' card.id %}" style="text-decoration: none;">
+   <div class="w3-left w3-card w3-hover-shadow w3-margin-left w3-padding">
+    {{ card }}<br>{{ card.time }}
+   </div></a>
+{% endfor %}
+
+<script>
+function myFunction(id) {
+var x = document.getElementById(id);
+if (x.className.indexOf("w3-show") == -1) {
+x.className += " w3-show";
+} else {
+x.className = x.className.replace(" w3-show", "");
+}
+}
+</script>
+{% endblock %}

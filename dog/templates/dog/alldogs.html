@@ -1,0 +1,24 @@
+
+		{% for dog in  dogs.all %}
+        <div class="w3-half w3-container">
+            <div class="w3-topbar w3-border-amber">
+                <img src="{{ dog.image.url }}" alt="Kutyaszántúra" class="w3-image">
+
+				<a href="{% url 'dog_detail' dog.id %}" style="text-decoration: none;">
+                <h2>{{ dog.name }}</h2></a>
+                {% if dog.leader %}
+            <ul>
+                <li>LEADER</li>
+            </ul>
+        {% else %}
+            <p>Not leader</p>
+        {% endif %}
+                <h2>{{ dog.birth_date }}</h2>
+                <h2>{{ dog.neutered }}</h2>
+				<p class="w3-tiny">{{ dog.pub_date_pretty }}</p>
+                <p>{{ dog.summary|safe }}</p>
+			</div>
+        </div>
+
+
+	{% endfor %}

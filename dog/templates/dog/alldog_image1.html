@@ -1,0 +1,42 @@
+{% extends './base.html' %}
+{% load dog_count_tags %}
+{% load widget_tweaks %}
+{% block title %}Dogs{% endblock %}
+
+
+{% block content %}
+
+<div class="w3-small w3-padding-small w3-streath">
+	<button onclick="myFunction('Demo1')" class="w3-button w3-block w3-gray w3-left-align">Open Filter</button>
+ <div id="Demo1" class="w3-container w3-hide">
+
+			<form method="get">
+
+				{{ myFilter.form }}
+
+		    <button class="w3-button w3-white w3-border w3-border-red w3-round-large" type="submit">Search</button>
+		  </form>
+
+ </div>
+</div>
+<br>
+ <!--XXX:
+-->
+		{% for dog in dogs %}
+       <div class="w3-left">
+			   <a href="{% url 'dog_detail' dog.id %}" style="text-decoration: none;">
+         <img src="{{ dog.image.url }}" class="w3-image" style="width:100px;height:100px;"></a>
+       </div>
+  	{% endfor %}
+
+<script>
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+{% endblock %}

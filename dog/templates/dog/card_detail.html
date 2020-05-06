@@ -1,0 +1,42 @@
+{% extends './base.html' %}
+{% load widget_tweaks %}
+{% block title %}Medical Card{% endblock %}
+
+
+{% block content %}
+
+
+   {% for c in carddetail %}
+
+     <div class="w3-twothird">
+
+         <table class="w3-table w3-striped w3-bordered">
+         <thead class="w3-teal"><tr><th style="width:30%">Medical Card - {{ c.dog }} - {{ c.id }}</th><th>Value: {{ c.diagnosis }}</th></tr></thead>
+         <tbody>
+         <tr><td style="width:30%">Position</td><td>{% if dog.leader %}LEADER{% else %}Not leader
+         {% endif %}</td></tr>
+         <tr><td style="width:30%">Diagnosis:</td><td>{{ c.diagnosis}}</td></tr>
+         <tr><td style="width:30%">Treatment:</td><td>{% for medication in c.treatment.all %} {{ medication }} ({{ medication.usage }}),{% endfor %}</td></tr>
+         <tr><td style="width:30%">dosage:</td><td>{{ c.dosage }}</td></tr>
+         <tr><td style="width:30%">duration:</td><td>{{ c.duration }}</td></tr>
+         <tr><td style="width:30%">time:</td><td>{{ c.time }}</td></tr>
+         <tr><td style="width:30%">datalogger:</td><td>{{ c.datalogger }}</td></tr>
+         <tr><td style="width:30%">active:</td><td>{{ c.active }}</td></tr>
+         <tr><td style="width:30%">notes:</td><td>{{ c.notes }}</td></tr>
+
+         </tbody></table>
+     </div>
+
+   {% endfor %}
+
+<script>
+function myFunction(id) {
+var x = document.getElementById(id);
+if (x.className.indexOf("w3-show") == -1) {
+x.className += " w3-show";
+} else {
+x.className = x.className.replace(" w3-show", "");
+}
+}
+</script>
+{% endblock %}

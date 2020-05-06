@@ -1,0 +1,38 @@
+{% extends './base.html' %}
+{% block title %}{{ dog.name }} - details{% endblock %}
+{% block content %}
+
+<div class="w3-twothird">
+  <img src="{{ dog.image.url }}" style="width:100%">
+  <h1>{{ dog.name }}{% if dog.leader %}(L){% endif %}  '{{ dog.birth_date_year }}
+    <span class="w3-medium">( Bjorn x Mandel )</span></h1>
+  <table class="w3-table w3-striped w3-bordered">
+  <thead class="w3-teal"><tr><th style="width:30%">Dog</th><th>Value</th></tr></thead>
+  <tbody>
+  <tr><td style="width:30%">Position</td><td>{% if dog.leader %}LEADER{% else %}Not leader
+  {% endif %}</td></tr>
+  <tr><td style="width:30%">Adoption</td><td>{% if dog.avaible_for_adoption %}Avaible for adoption{% else %}Not avaible
+  {% endif %}</td></tr>
+  <tr><td>Sex</td><td>{{ dog.sex }} ({% if dog.neutered %}neutered{% else %}intact
+  {% endif %})</td></tr>
+  <tr><td style="width:30%">Sex status</td><td>{% if dog.neutered %}Neutered{% else %}Intact
+  {% endif %}</td></tr>
+  <tr><td>Date of birth</td><td>{{ dog.birth_date_pretty }}</td></tr>
+  <tr><td>Harness size</td><td>{{ dog.get_harness_size_display }}</td></tr>
+  <tr><td>Passport num.</td><td>{{ dog.passport_num }}</td></tr>
+  <tr><td>Breeder</td><td>{{ dog.breeder }}</td></tr>
+  <tr><td>Pedigree</td><td><a href="{{ dog.trekkhundreg_id }}">{{ dog.trekkhundreg_id }}</a></td></tr>
+  </tbody></table>
+  <br>
+  </div>
+  <div class="w3-third w3-padding">
+  <h1>{{ dog.name }}</h1>
+  <p>{{ dog.body }}</p>
+  <h4>Medical cards</h4>
+  {% for b in card_m.all %}
+  <p><a href="{% url 'card_detail' b.id %}" class="fa fa-medkit w3-hover-text-teal">
+  Medical card - {{ b.id }}</a></p>
+  {% endfor %}
+  <h4>Uploaded files</h4>
+</div>
+{% endblock %}
