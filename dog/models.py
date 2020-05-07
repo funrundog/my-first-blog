@@ -2,6 +2,8 @@ from django.db import models
 from datetime import date
 from django.contrib.auth.models import User
 from django.utils import timezone
+from imagekit.models import ImageSpecField
+from pilkit.processors import ResizeToFill
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
@@ -17,6 +19,14 @@ class Dog(models.Model):
     trekkhundreg = models.URLField(blank = True)
     birth_date = models.DateField(default=date.today)
     image = models.ImageField(upload_to='images/', default='images/default.jpg')
+    image_medium = ImageSpecField(source='image',
+                                     processors=[ResizeToFill(250, 150)],
+                                     format='JPEG',
+                                     options={'quality': 60})
+    image_small = ImageSpecField(source='image',
+                                     processors=[ResizeToFill(100, 100)],
+                                     format='JPEG',
+                                     options={'quality': 60})
     body = models.TextField()
     passport_num = models.CharField(max_length=30, blank = True)
     #chip_num = models.CharField(max_length=30, blank = True)

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'dog.apps.DogConfig',
     'django_filters',
+    'imagekit'
 ]
 
 MIDDLEWARE = [
