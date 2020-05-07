@@ -1,5 +1,4 @@
 {% extends './base.html' %}
-{% load widget_tweaks %}
 {% block title %}Medical Cards{% endblock %}
 
 
@@ -7,8 +6,9 @@
 
 {% for card in cards %}
    <a href="{% url 'card_detail' card.id %}" style="text-decoration: none;">
-   <div class="w3-left w3-card w3-hover-shadow w3-margin-left w3-padding">
-    {{ card }}<br>{{ card.time }}
+   <div class="w3-left w3-card w3-hover-shadow w3-margin w3-padding">
+    <h4>{{ card }}</h4>{{ card.time }}<hr>
+    {% for medication in card.treatment.all %}<p><b>{{ medication }} {{ card.dosage }}</b></p>{% endfor %}
    </div></a>
 {% endfor %}
 

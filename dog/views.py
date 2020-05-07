@@ -27,7 +27,7 @@ def alldog_image(request):
     return render(request, 'dog/alldog_image.html', context)
 
 def medicalcards(request):
-    cards = MedicalCard.objects.all()
+    cards = MedicalCard.objects.filter(active=True)
     context = {'cards':cards}
     return render(request, 'dog/medicalcards.html', context)
 

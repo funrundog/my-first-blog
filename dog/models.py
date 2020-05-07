@@ -11,7 +11,10 @@ from django.utils.translation import gettext_lazy as _
 class Dog(models.Model):
     name = models.CharField(max_length=25)
     CHOICES = [('male','Male'), ('female','Female')]
-    sex = models.CharField(max_length=250, choices=CHOICES, default='male')
+    sex = models.CharField(max_length=6, choices=CHOICES, default='male')
+
+    LOC_CHOICES = [('a_poll','A poll'), ('b_poll','B poll'), ('c_poll','C poll'), ('d_poll','D poll'), ('racing','Racing'), ('out','Out')]
+    location = models.CharField(max_length=8, choices=LOC_CHOICES, blank = True)
     leader = models.BooleanField()
     for_breeding = models.BooleanField()
     neutered = models.BooleanField()
@@ -75,16 +78,20 @@ class Medication(models.Model):
         return self.name
 
 class MedicalCard(models.Model):
-     diagnosis = models.CharField(max_length=250)
+     diagnosis = models.CharField(max_length=30)
+     diagnosis_long = models.CharField(max_length=250, blank = True)
      treatment = models.ManyToManyField(Medication)
      dosage = models.CharField(max_length=100, blank = True)
      duration = models.DurationField(help_text='[DD] [[hh:]mm:]ss')
      dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
      datalogger = models.ForeignKey(User, on_delete=models.CASCADE)
-     active = models.BooleanField()
+     active = models.BooleanField(default=True)
      time = models.DateTimeField(default=timezone.now)
      notes = models.TextField(blank = True)
      #vet_report = FileField(upload_to='documents/', max_length=100)
+
+     class Meta:
+             ordering = ['-time',]
 
      def __str__(self):
         return "%s %s" % (self.dog.name, self.diagnosis)
