@@ -8,7 +8,9 @@
    <a href="{% url 'card_detail' card.id %}" style="text-decoration: none;">
    <div class="w3-left w3-card w3-hover-shadow w3-margin w3-padding">
     <h4>{{ card }}</h4>{{ card.time }}<hr>
-    {% for medication in card.treatment.all %}<p><b>{{ medication }} {{ card.dosage }}</b></p>{% endfor %}
+    {% for medication in card.treatment.all %}<p><b>{{ medication }} {{ card.dosage }}</b></p>
+    {% endfor %}
+    @ {{ card.datalogger.first_name }}   {{ card.datalogger.last_name }}
    </div></a>
 {% endfor %}
 

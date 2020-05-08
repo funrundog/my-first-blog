@@ -87,7 +87,22 @@ class MedicalCard(models.Model):
      datalogger = models.ForeignKey(User, on_delete=models.CASCADE)
      active = models.BooleanField(default=True)
      time = models.DateTimeField(default=timezone.now)
+     expired_date = models.DateTimeField(blank=True, null=True)
      notes = models.TextField(blank = True)
+
+
+     def expire(self):
+         now = timezone.now()
+         if self.active == True and self.expired_date > now:
+            return self.active.set(False)
+
+     '''def active(self):
+        now = timezone.now()
+        if self.stanow and now < self.end:
+            return True
+        return False
+
+     '''
      #vet_report = FileField(upload_to='documents/', max_length=100)
 
      class Meta:
@@ -96,3 +111,15 @@ class MedicalCard(models.Model):
      def __str__(self):
         return "%s %s" % (self.dog.name, self.diagnosis)
 ''' returns more than one value, dog gives error, add name from Dog class'''
+
+class Person(models.Model):
+     name = models.CharField(max_length=50)
+     phone = models.CharField(max_length=50)
+     email = models.EmailField(max_length = 254, blank=True)
+     messenger = models.URLField(blank=True, help_text="m.me/username")
+     PER_CHOICES = [('sponsor','Sponsor'), ('adopter','Adopter'), ('host','Host')]
+     status = models.CharField(max_length=10, choices=PER_CHOICES)
+     dog = models.ForeignKey(Dog, on_delete=models.CASCADE, blank=True)
+
+     def __str__(self):
+        return self.name
