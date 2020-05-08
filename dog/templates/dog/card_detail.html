@@ -15,11 +15,13 @@
          <tbody>
          <tr><td style="width:30%">Position</td><td>{% if dog.leader %}LEADER{% else %}Not leader
          {% endif %}</td></tr>
-         <tr><td style="width:30%">Diagnosis:</td><td>{{ c.diagnosis}}</td></tr>
+         <tr><td style="width:30%">Diagnosis short:</td><td>{{ c.diagnosis}}</td></tr>
+         <tr><td style="width:30%">Diagnosis long:</td><td>{{ c.diagnosis_long}}</td></tr>
          <tr><td style="width:30%">Treatment:</td><td>{% for medication in c.treatment.all %} {{ medication }} ({{ medication.usage }}),{% endfor %}</td></tr>
          <tr><td style="width:30%">dosage:</td><td>{{ c.dosage }}</td></tr>
          <tr><td style="width:30%">duration:</td><td>{{ c.duration }}</td></tr>
-         <tr><td style="width:30%">time:</td><td>{{ c.time }}</td></tr>
+         <tr><td style="width:30%">created:</td><td>{{ c.time }}</td></tr>
+         <tr><td style="width:30%">expire:</td><td>{{ c.expired_date}}</td></tr>
          <tr><td style="width:30%">datalogger:</td><td>{{ c.datalogger }}</td></tr>
          <tr><td style="width:30%">active:</td><td>{{ c.active }}</td></tr>
          <tr><td style="width:30%">notes:</td><td>{{ c.notes }}</td></tr>

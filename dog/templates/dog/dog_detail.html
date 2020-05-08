@@ -11,6 +11,7 @@
   <tbody>
   <tr><td style="width:30%">Position</td><td>{% if dog.leader %}LEADER{% else %}Not leader
   {% endif %}</td></tr>
+  <tr><td>Location</td><td>{{ dog.get_location_display }}</td></tr>
   <tr><td style="width:30%">Adoption</td><td>{% if dog.avaible_for_adoption %}Avaible for adoption{% else %}Not avaible
   {% endif %}</td></tr>
   <tr><td>Sex</td><td>{{ dog.sex }} ({% if dog.neutered %}neutered{% else %}intact
@@ -28,11 +29,13 @@
   <div class="w3-third w3-padding">
   <h1>{{ dog.name }}</h1>
   <p>{{ dog.body }}</p>
+  {% if user.is_authenticated %}
   <h4>Medical cards</h4>
   {% for b in card_m.all %}
   <p><a href="{% url 'card_detail' b.id %}" class="fa fa-medkit w3-hover-text-teal">
   Medical card - {{ b.id }}</a></p>
   {% endfor %}
   <h4>Uploaded files</h4>
+  {% endif %}
 </div>
 {% endblock %}

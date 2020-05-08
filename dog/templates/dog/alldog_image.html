@@ -5,7 +5,7 @@
 
 
 {% block content %}
-<button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-d1">Filter</button>
+<button onclick="myFunction('Demo1')" class="w3-button w3-block w3-margin-bottom w3-theme-d1">Filter</button>
 <div class="w3-conteiner w3-streath">
 
  <div id="Demo1" class="w3-container w3-hide">
@@ -22,12 +22,14 @@
 
  <!--XXX:
 -->
+  <div class="w3-contener w3-align-center">
 		{% for dog in dogs %}
        <div class="w3-left">
 			   <a href="{% url 'dog_detail' dog.id %}" style="text-decoration: none;">
          <img src="{{ dog.image_small.url }}" class="w3-image w3-hover-sepia"></a>
        </div>
   	{% endfor %}
+  </div>
 
 <script>
 function myFunction(id) {

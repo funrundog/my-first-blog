@@ -13,7 +13,7 @@ class Dog(models.Model):
     CHOICES = [('male','Male'), ('female','Female')]
     sex = models.CharField(max_length=6, choices=CHOICES, default='male')
 
-    LOC_CHOICES = [('a_poll','A poll'), ('b_poll','B poll'), ('c_poll','C poll'), ('d_poll','D poll'), ('racing','Racing'), ('out','Out')]
+    LOC_CHOICES = [('a_pool','A pool'), ('b_pool','B pool'), ('c_pool','C pool'), ('d_pool','D pool'), ('racing','Racing'), ('out','Out')]
     location = models.CharField(max_length=8, choices=LOC_CHOICES, blank = True)
     leader = models.BooleanField()
     for_breeding = models.BooleanField()
